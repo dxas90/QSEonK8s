@@ -27,8 +27,8 @@ sudo snap alias microk8s.kubectl kubectl
 
 export KUBECONFIG=/snap/microk8s/current/configs/kubelet.config
 
-echo "export KUBECONFIG=/snap/microk8s/current/configs/kubelet.config" > /home/ubuntu/.bash_profile
-echo "source <(kubectl completion bash)" >> /home/ubuntu/.bash_profile
+echo "export KUBECONFIG=/snap/microk8s/current/configs/kubelet.config" >> $HOME/.bashrc
+echo "source <(kubectl completion bash)" >> $HOME/.bashrc
 
 echo 'Getting Helm'
 curl -s https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
