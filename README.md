@@ -11,10 +11,18 @@ Currently I import those logs: engine, edge-auth
  To enable the Kubernetes API in your cluster with this command
 ```
 kubectl proxy --address='ip.of.the.host' --port=8001 --accept-hosts='^*$'
+kubectl proxy --address='`ifconfig | grep Bcast:0.0.0.0|awk '{print $2}'|cut -d ":" -f 2`' --port=8001 --accept-hosts='^*$'
 ```
+
+ To remove all failed pods use this command
+```
+   kubectl get pods --all-namespaces | grep -E 'ImagePullBackOff|ErrImagePull|Evicted|Error|Completed' | awk '{ if(NR>1)print $2}' | xargs kubectl delete pods
+```
+
 Hint: if you dont know the ip-address under which the port can be accessed, type the below. It is one of the shown IPs.
 ```
 ifconfig | grep Bcast
+ifconfig | grep Bcast:0.0.0.0|awk '{print $2}'|cut -d ":" -f 2
 ```
 
  * The hostname, port must also be set in the Load Script of the app (page Main).
