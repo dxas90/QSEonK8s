@@ -11,7 +11,6 @@ Currently I import those logs: engine, edge-auth
  To enable the Kubernetes API in your cluster with this command
 ```
 kubectl proxy --address='ip.of.the.host' --port=8001 --accept-hosts='^*$'
-kubectl proxy --address='`ifconfig | grep Bcast:0.0.0.0|awk '{print $2}'|cut -d ":" -f 2`' --port=8001 --accept-hosts='^*$'
 ```
 
  To remove all failed pods use this command
