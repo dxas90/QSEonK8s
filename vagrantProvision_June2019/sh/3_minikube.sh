@@ -43,7 +43,6 @@ touch /home/vagrant/.kube/config
 echo 'Starting minikube local cluster'
 
 minikube start --kubernetes-version v1.14.0 --memory 4096 --cpus=2 --vm-driver=none
-# minikube start --kubernetes-version v1.14.0 --memory 4096 --cpus=2 --vm-driver=none --extra-config=apiserver.service-node-port-range=80-32767
 
 #sudo cp /root/.kube $HOME/.kube
 sudo chown -R vagrant /home/vagrant/.kube
@@ -58,4 +57,10 @@ curl -s https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > g
 chmod 700 get_helm.sh
 # changed on 21-05-2019: helm version 2.14 doesn't work, getting an older version
 ./get_helm.sh --version v2.13.1
+
+#Initialize Helm Tiller pod, upgrade and update the repos
+helm init
+helm init --wait --upgrade
+helm repo update
+
 
