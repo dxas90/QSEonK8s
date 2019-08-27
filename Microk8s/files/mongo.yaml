@@ -1,6 +1,6 @@
 persistence:
   enabled: true
-  existingClaim: pvc-mongo
+  storageClass: microk8s-hostpath
 usePassword: true
 mongodbRootPassword: secretpassword
 mongodbUsername: qlik

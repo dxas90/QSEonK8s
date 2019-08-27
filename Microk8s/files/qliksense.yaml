@@ -1,4 +1,17 @@
-# minikube
+#This setting enables dev mode to include a local MongoDB install
+devMode:
+  enabled: false
+
+#This setting accepts the EULA for the product
+engine:
+  acceptEULA: "yes"
+
+#These setting specifies the storage for the services
+global:
+  persistence:
+    storageClass: microk8s-hostpath
+
+# microk8s
 elastic-infra:
   nginx-ingress:
     controller:
@@ -8,7 +21,6 @@ elastic-infra:
           https: 32443
       extraArgs.report-node-internal-ip-address: ""
       default-ssl-certificate: default/elastic-infra-elastic-infra-tls-secret
-
 hub:
   ingress:
     annotations:
@@ -28,40 +40,3 @@ edge-auth:
 mongodb:
   uri: mongodb://qlik:Qlik1234@mongo-mongodb.default.svc.cluster.local:27017/qsefe
 
-qix-datafiles:
-  persistence:
-    accessMode: ReadWriteMany
-    enabled: true
-    existingClaim: pvc-qse
-redis:
-  persistence:
-    accessMode: ReadWriteMany
-    enabled: true
-    existingClaim: pvc-qse
-reporting:
-  persistence:
-    accessMode: ReadWriteMany
-    enabled: true
-    existingClaim: pvc-qse
-resource-library:
-  persistence:
-    accessMode: ReadWriteMany
-    enabled: true
-    existingClaim: pvc-qse
-temporary-contents:
-  persistence:
-    accessMode: ReadWriteMany
-    enabled: true
-    existingClaim: pvc-qse
-engine:
-  acceptEULA: "yes"
-  persistence:
-    accessMode: ReadWriteMany
-    enabled: true
-    existingClaim: pvc-qse
-dcaas:
-  dcaas-redis:
-    persistence:
-      accessMode: ReadWriteMany
-      enabled: true
-      existingClaim: pvc-qse
