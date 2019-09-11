@@ -7,10 +7,14 @@ sudo apt-get -q install socat -y
 
 #install microk8s and alias kubectl
 sudo snap install microk8s --classic
+
+sleep 10s
+sudo microk8s.enable dns storage helm
+
 sudo snap alias microk8s.kubectl kubectl
 sudo snap alias microk8s.helm helm
 
-sudo microk8s.enable dns storage helm
+sudo usermod -a -G microk8s ubuntu
 
 export KUBECONFIG=/snap/microk8s/current/configs/kubelet.config
 
@@ -21,7 +25,6 @@ kubectl create namespace tiller
 kubectl create namespace qlik
 
 #Initialize Helm Tiller pod, upgrade and update the repos
-helm init
 helm init --wait --upgrade
 helm repo update
 sleep 10s
