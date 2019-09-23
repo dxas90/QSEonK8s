@@ -6,7 +6,7 @@ sudo apt-get -qq -y update
 sudo apt-get -q install socat -y
 
 #install microk8s and alias kubectl
-sudo snap install microk8s --classic
+sudo snap install microk8s --classic --edge
 
 sleep 10s
 sudo microk8s.enable dns storage helm

@@ -1,0 +1,7 @@
+persistence:
+  storageClass: efs
+  accessMode: ReadWriteMany
+mongodbRootPassword: dvFuPAhjgVaejQM9aI
+mongodbUsername: qlik
+mongodbPassword: CmKu98RaV4KvHO56G8
+mongodbDatabase: qsefe

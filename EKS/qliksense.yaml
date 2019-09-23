@@ -1,0 +1,58 @@
+#This setting enables dev mode to include a local MongoDB install
+devMode:
+  enabled: false
+
+#This setting accepts the EULA for the product
+engine:
+  acceptEULA: "yes"
+
+#These setting specifies the storage for the services
+global:
+  persistence:
+    storageClass: efs
+#
+##storage
+mongodb:
+ uri: mongodb://qlik:CmKu98RaV4KvHO56G8@mongo-mongodb.default.svc.cluster.local:27017/qsefe?authSource=qsefe&ssl=false
+#
+edge-auth:
+  oidc:
+    enabled: true
+
+## identity-providers contains the configurations for the identity-providers sub-chart
+identity-providers:
+  secrets:
+    idpConfigs:
+      - discoveryUrl: "https://auth.excelimpact.com/auth/realms/Qlik/.well-known/openid-configuration"
+        clientId: "qlik"
+        clientSecret: "8f3ea285-85c2-4f55-8fa8-7d737edb0236"
+        realm: "Qlik"
+        hostname: "qlik.excelimpact.com"
+
+elastic-infra:
+  ingress:
+    host: "qlik.excelimpact.com"
+  nginx-ingress:
+    controller:
+      config:
+        force-ssl-redirect: "true"
+        proxy-read-timeout: "3600"
+        proxy-send-timeout: "3600"
+      service:
+        type: NodePort
+        nodePorts:
+          https: 32443
+          http: 32080
+        annotations:
+          service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "3600"
+      extraArgs:
+        report-node-internal-ip-address: ""
+
+# messaging:
+  # nats:
+    # auth:
+      # users:
+      # - user: natsClient
+        # password: yux9Kb6U1GAEL
+    # clusterAuth:
+      # password: OSx2sD25mjUnjYi4LM
