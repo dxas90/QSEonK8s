@@ -32,4 +32,4 @@ helm install -n mongo stable/mongodb -f $PWD/mongo.yaml
 helm install -n qlikinit qlik-stable/qliksense-init --version 1.1.0
 
 # install qlik sense enterprise on kubernetes
-helm install -n qlik qlik-stable/qliksense -f $PWD/qliksense.yaml --version 1.2.46
+helm install -n qlik qlik-stable/qliksense -f $PWD/qliksense.yaml --version 1.30.2
